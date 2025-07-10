@@ -110,11 +110,11 @@ export default function PlaceForm() {
                     </div>
                     <div>
                         <h3 className="mt-2 -mb-1">Price Per Night</h3>
-                        <input type='number' value={pricePerNight} onChange={ev => setPricePerNight(ev.target.value)} placeholder="1" />
+                        <input type='number' value={pricePerNight} onChange={ev => setPricePerNight(Number(ev.target.value))} placeholder="1" />
                     </div>
                     <div>
                         <h3 className="mt-2 -mb-1">Max no. of guests</h3>
-                        <input type='number' value={maxGuests} onChange={ev => setMaxGuests(ev.target.value)} placeholder="1" />
+                        <input type='number' value={maxGuests} onChange={ev => setMaxGuests(Number(ev.target.value))} placeholder="1" />
                     </div>
                 </div>
                 <button className="primary my-4">Save</button>

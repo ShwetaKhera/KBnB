@@ -1,4 +1,4 @@
-export default function AddressLink({ place }) {
+export default function AddressLink({ place } : any) {
     return (
         <a target="_blank" href={"https://maps.google.com/?q=" + place?.address} className="block my-3 font-semi-bold underline flex gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">

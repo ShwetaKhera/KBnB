@@ -1,10 +1,10 @@
 import { differenceInCalendarDays, format } from "date-fns";
 
-export default function BookingDate({booking, className}) {
-    function getFormattedDate(date) {
+export default function BookingDate({booking, className} : any) {
+    function getFormattedDate(date : any) {
         return format(new Date(date), 'yyyy-MM-dd');
     }
-    function getNumberOfDays(booking) {
+    function getNumberOfDays(booking: any) {
         const checkOut = new Date(booking.checkOut)
         const checkIn = new Date(booking.checkIn)
         return differenceInCalendarDays(checkOut, checkIn);
