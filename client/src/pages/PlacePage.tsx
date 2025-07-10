@@ -5,9 +5,24 @@ import AddressLink from "../components/AddressLink";
 import BookingWidget from "../components/BookingWidget";
 import PlaceGallery from "../components/PlaceGallery";
 
+export type Place = {
+    _id: Object,
+    owner: Object,
+    title: String,
+    address: String,
+    photos: [String],
+    description: String,
+    perks: [String],
+    extraInfo: String,
+    checkInTime: Number,
+    checkOutTime: Number,
+    maxGuests: Number,
+    pricePerNight: Number,
+}
+
 export default function PlacePage() {
     const { id } = useParams();
-    const [place, setPlace] = useState(null);
+    const [place, setPlace] = useState<Place|null>(null);
 
     useEffect(() => {
         if (!id) return;
@@ -17,24 +32,24 @@ export default function PlacePage() {
         })
     }, [id])
 
-    
+
     return (
         <>
             <div className="mt-4 bg-gray-100 -mx-8 px-8 pt-8">
                 <h1 className="text-3xl ">{place?.title}</h1>
                 <AddressLink place={place} />
-                <PlaceGallery place={place}/>
+                <PlaceGallery place={place} />
                 <div className="mt-8 mb-4 grid gap-8 grid-cols-1 md:grid-cols-[2fr_1fr]">
                     <div className="">
                         <div className="my-4">
                             <h2 className="font-semi-bold text-2xl">Description</h2>
                             {place?.description}
                         </div>
-                        Check-in: {place?.checkInTime} <br />
-                        Check-out: {place?.checkOutTime} <br />
-                        Max Number of Guests: {place?.maxGuests}
+                        Check-in: {Number(place?.checkInTime)} <br />
+                        Check-out: {Number(place?.checkOutTime)} <br />
+                        Max Number of Guests: {Number(place?.maxGuests)}
                     </div>
-                    <BookingWidget place={place}/>
+                    <BookingWidget place={place} />
                 </div>
                 <div className="bg-white -mx-8 px-8 py-8 border-t">
                     <h2 className="font-semi-bold text-2xl">Extra Info</h2>

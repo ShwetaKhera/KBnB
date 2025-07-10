@@ -1,4 +1,4 @@
-export default function Perks({selected, onChange}) {
+export default function Perks({selected, onChange} : any) {
     function handleCheckboxClick(ev : any){
         const {checked, name} = ev.target;
         if(checked) {

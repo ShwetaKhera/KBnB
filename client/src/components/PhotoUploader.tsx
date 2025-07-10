@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-export default function PhotoUploader({ photos, onChange }) {
+export default function PhotoUploader({ photos, onChange }: any) {
     const [photoLink, setPhotoLink] = useState('');
 
     function uploadPhoto(ev: any) {
@@ -45,11 +45,11 @@ export default function PhotoUploader({ photos, onChange }) {
             </div>
             <div className="mt-2 grid gap-2 grid-cols-3 md:grid-col-4 lg:grid-col-6">
                 {
-                    photos?.length > 0 && photos?.map(link => (
+                    photos?.length > 0 && photos?.map((link : string) => (
                         <div className="max-h-64 rounded-md bg-gray-100 place-content-center relative" key={link}>
                             <img
                                 className="max-h-64 w-full rounded-md justify-self-center object-cover position-center"
-                                src={'http://localhost:4000/uploads/' + link}
+                                src={import.meta.env.VITE_API_URL +'/uploads/' + link}
                             />
                             <button onClick={(ev) => removePhoto(ev, link)} className="cursor-pointer absolute bottom-1 right-1 text-white bg-black py-2 px-3 bg-opacity-50 rounded-2xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">

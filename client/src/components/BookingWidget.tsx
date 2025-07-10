@@ -4,21 +4,21 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
-export default function BookingWidget({ place }) {
+export default function BookingWidget({ place } : any) {
     const [checkIn, setCheckIn] = useState('');
     const [checkOut, setCheckOut] = useState('');
     const [noOfGuests, setNoOfGuests] = useState(1);
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [redirect, setRedirect] = useState('');
-    const { user } = useContext(UserContext);
+    const { user } : any = useContext(UserContext);
 
     useEffect(() => {
         if(user) {
             setName(user.name)
         }
     }, [user])
-    function getNoOfDays() {
+    const getNoOfDays = () => {
         if(checkIn.length > 0 && checkOut.length > 0) {
             return differenceInCalendarDays(new Date(checkOut), new Date(checkIn))
         }
@@ -61,7 +61,7 @@ export default function BookingWidget({ place }) {
             </div>
             <div className="border-t p-2">
                 <label>Number of guests:</label>
-                <input type="number" name="" id="" value={noOfGuests} onChange={ev => setNoOfGuests(ev.target.value)} />
+                <input type="number" name="" id="" value={noOfGuests} onChange={ev => setNoOfGuests(Number(ev.target.value))} />
             </div>
             {
                 getNoOfDays() && (
@@ -76,7 +76,7 @@ export default function BookingWidget({ place }) {
             <button onClick={finishBooking} className="primary mt-4">
                 Book
                 {getNoOfDays() && (
-                    <span> for ${getNoOfDays() * place?.pricePerNight}</span>
+                    <span> for ${(getNoOfDays() || 1)  * place?.pricePerNight}</span>
                 ) }
             </button>
         </div>

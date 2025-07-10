@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PlaceForm from "../components/PlaceForm";
 import PlaceImg from "../components/PlaceImg";
+import type { Place } from "./PlacePage";
 
 export default function PlacesPage() {
     const { action, id } = useParams();
     
-    const [places, setPlaces] = useState([])
+    const [places, setPlaces] = useState<Place[]>([])
     
     useEffect(() => {
         if(!action && !id){
@@ -34,8 +35,8 @@ export default function PlacesPage() {
                     </div>
                     <div className="mt-4">
                         {
-                            places?.length > 0 && places?.map((place) => (
-                                <Link to={'/account/places/' + place._id} key={place.id} className="flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-md my-4">
+                            places?.length > 0 && places?.map((place: Place, i: number) => (
+                                <Link to={'/account/places/' + place._id} key={i} className="flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-md my-4">
                                     <div className="w-32 h-32 bg-gray-300 grow shrink-0">
                                         <PlaceImg place={place}/>
                                     </div>

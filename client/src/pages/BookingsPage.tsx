@@ -1,5 +1,5 @@
 import axios from "axios";
-import { differenceInCalendarDays, format } from "date-fns";
+import { differenceInCalendarDays } from "date-fns";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AccountNav from "../components/AccountNav";
@@ -15,7 +15,7 @@ export default function BookingsPage() {
         })
     }, [])
 
-    function getNumberOfDays(booking) {
+    function getNumberOfDays(booking: any) {
         const checkOut = new Date(booking.checkOut)
         const checkIn = new Date(booking.checkIn)
         return differenceInCalendarDays(checkOut, checkIn);

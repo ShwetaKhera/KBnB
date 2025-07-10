@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function PlaceGallery({place}) {
+export default function PlaceGallery({place}: any) {
     const [showAllPhotos, setShowAllPhotos] = useState(false);
 
     if (showAllPhotos) {
@@ -9,7 +9,7 @@ export default function PlaceGallery({place}) {
                 <div className="grid gap-4">
                     <div className="flex fixed w-full bg-white text-gray-800 p-6 shadow shadow-black-500">
                         <button
-                            onClick={(ev) => setShowAllPhotos(false)}
+                            onClick={() => setShowAllPhotos(false)}
                             className=" flex gap-1 py-2 px-4 rounded-md bg-transparent border border-black shadow shadow-gray-500"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 -ml-2">
@@ -23,7 +23,7 @@ export default function PlaceGallery({place}) {
                         {
                             place?.photos?.length > 0 && place?.photos?.map((photo: string) => (
                                 <div key={photo} className="mx-8 my-4">
-                                    <img src={"http://localhost:4000/uploads/" + photo} alt="" />
+                                    <img src={import.meta.env.VITE_API_URL +"/uploads/" + photo} alt="" />
                                 </div>
                             ))
                         }
@@ -40,25 +40,25 @@ export default function PlaceGallery({place}) {
                         <div>
                             {place?.photos?.[0] && (
                                 <div >
-                                    <img onClick={() => setShowAllPhotos(true)} src={"http://localhost:4000/uploads/" + place?.photos?.[0]} alt="" className="aspect-square cursor-pointer object-cover" />
+                                    <img onClick={() => setShowAllPhotos(true)} src={import.meta.env.VITE_API_URL + "/uploads/" + place?.photos?.[0]} alt="" className="aspect-square cursor-pointer object-cover" />
                                 </div>
                             )}
                         </div>
                         <div className="grid">
                             <div>
                                 {place?.photos?.[1] && (
-                                    <img onClick={() => setShowAllPhotos(true)}  src={"http://localhost:4000/uploads/" + place?.photos?.[1]} alt="" className="aspect-square cursor-pointer object-cover" />
+                                    <img onClick={() => setShowAllPhotos(true)}  src={import.meta.env.VITE_API_URL + "/uploads/" + place?.photos?.[1]} alt="" className="aspect-square cursor-pointer object-cover" />
                                 )}
                             </div>
                             <div className="overflow-hidden">
                                 {place?.photos?.[2] && (
-                                    <img onClick={() => setShowAllPhotos(true)}  src={"http://localhost:4000/uploads/" + place?.photos?.[2]} alt="" className="aspect-square cursor-pointer object-cover relative top-2" />
+                                    <img onClick={() => setShowAllPhotos(true)}  src={import.meta.env.VITE_API_URL + "/uploads/" + place?.photos?.[2]} alt="" className="aspect-square cursor-pointer object-cover relative top-2" />
                                 )}
                             </div>
                         </div>
                     </div>
                     <button
-                        onClick={(ev) => setShowAllPhotos(true)}
+                        onClick={() => setShowAllPhotos(true)}
                         className="flex gap-1 absolute bottom-2 right-2 py-2 pr-4 pl-3 bg-white rounded-md shadow shadow-md shadow-gray-500"
                     >
                         <div className="content-center">

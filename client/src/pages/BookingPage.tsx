@@ -6,12 +6,35 @@ import AddressLink from "../components/AddressLink";
 import BookingDate from "../components/BookingDate";
 import PlaceGallery from "../components/PlaceGallery";
 
+type Booking = {
+    _id: string;
+    userId: Object,
+    checkIn: Date,
+    checkOut: Date,
+    name: String,
+    phoneNumber: String,
+    pricePerNight: Number
+    place : {
+        owner: Object,
+        title: String,
+        address: String,
+        photos: [String],
+        description: String,
+        perks: [String],
+        extraInfo: String,
+        checkInTime: Number,
+        checkOutTime: Number,
+        maxGuests: Number,
+        pricePerNight: Number,
+    }
+};
+
 export default function BookingPlace() {
     const {id} = useParams();
-    const [booking, setBooking] = useState(null);
+    const [booking, setBooking] = useState<Booking | null>(null);
     function getNoOfDays() {
-        const {checkIn, checkOut} = booking;
-        if(checkIn.length > 0 && checkOut.length > 0) {
+        const {checkIn, checkOut} : any  = booking || {};
+        if(checkIn && checkOut && checkIn.length > 0 && checkOut.length > 0) {
             return differenceInCalendarDays(new Date(checkOut), new Date(checkIn))
         }
 
@@ -41,7 +64,7 @@ export default function BookingPlace() {
                 </div>
                 <div className="bg-primary p-4 text-white rounded-2xl text-center">
                     <div>Total Price</div>
-                    <div className="text-3xl">${getNoOfDays() * booking.place?.pricePerNight}</div>
+                    <div className="text-3xl">${getNoOfDays() * Number(booking.place?.pricePerNight)}</div>
                 </div>
             </div>
             <AddressLink place={booking.place}/>
