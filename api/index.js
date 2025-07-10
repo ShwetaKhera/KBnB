@@ -24,7 +24,7 @@ app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use(cors({
     credentials: true,
-    origin: "https://kbnb.netlify.app/"
+    origin: "https://kbnb.netlify.app"
 }))
 
 mongoose.connect(process.env.MONGODB_CONNECTION_URL)
